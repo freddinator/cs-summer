@@ -14,12 +14,16 @@ class Question:
 		raise NotImplementedError
 
 	def ask(self):
-		answer = int(input(str(self.number) + ": " + self.output() + " > "))
-
-		if answer == self.getAnswer():
-			return True, self.getAnswer()
-		else:
-			return False, self.getAnswer()
+		while True:
+			try:
+				answer = int(input(str(self.number) + ": " + self.output() + " > "))
+			except ValueError:
+				print("\033[93m Invalid answer!\033[0m")
+			else:
+				if answer == self.getAnswer():
+					return True, self.getAnswer()
+				else:
+					return False, self.getAnswer()
 
 class AddQuestion(Question):
 	def __init__(self, number):
