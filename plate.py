@@ -16,6 +16,6 @@ re7='([a-z])'
 rg = re.compile(re1+re2+re3+re4+re5+re6+re7,re.IGNORECASE)
 
 if rg.match(numberplate) and len(numberplate) == 7:
-	print ("\033[92m ✔ Valid\033[0m")
+    print ("\033[92m ✔ Valid\033[0m")
 else:
-	print ("\033[91m ✗ Invalid\033[0m")
+    print ("\033[91m ✗ Invalid\033[0m")

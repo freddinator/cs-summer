@@ -1,52 +1,50 @@
 import random
 
 class Question:
-	def __init__(self, number, default_cap = 20):
-		self.number = number
-		self.a = random.randint(1,default_cap)
-		self.b = random.randint(1,default_cap)
-		self.operator = ""
+    def __init__(self, number, default_cap = 20):
+        self.number = number
+        self.a = random.randint(1,default_cap)
+        self.b = random.randint(1,default_cap)
+        self.operator = ""
 
-	def output(self):
-		return str(self.a) + " " + self.operator + " " + str(self.b)
+    def output(self):
+        return str(self.a) + " " + self.operator + " " + str(self.b)
 
-	def getAnswer(self):
-		raise NotImplementedError
+    def getAnswer(self):
+        raise NotImplementedError
 
-	def ask(self):
-		while True:
-			try:
-				answer = int(input(str(self.number) + ": " + self.output() + " > "))
-			except ValueError:
-				print("\033[93m Invalid answer!\033[0m")
-			else:
-				if answer == self.getAnswer():
-					return True, self.getAnswer()
-				else:
-					return False, self.getAnswer()
+    def ask(self):
+        while True:
+            try:
+                answer = int(input(str(self.number) + ": " + self.output() + " > "))
+            except ValueError:
+                print("\033[93m Invalid answer!\033[0m")
+            else:
+                if answer == self.getAnswer():
+                    return True, self.getAnswer()
+                else:
+                    return False, self.getAnswer()
 
 class AddQuestion(Question):
-	def __init__(self, number):
-		super().__init__(number)
-		self.operator = "+"
+    def __init__(self, number):
+        super().__init__(number)
+        self.operator = "+"
 
-	def getAnswer(self):
-		return self.a + self.b
+    def getAnswer(self):
+        return self.a + self.b
 
 class SubtractQuestion(Question):
-	def __init__(self, number):
-		super().__init__(number)
-		self.operator = "-"
+    def __init__(self, number):
+        super().__init__(number)
+        self.operator = "-"
 
-	def getAnswer(self):
-		return self.a - self.b
+    def getAnswer(self):
+        return self.a - self.b
 
 class MultiplyQuestion(Question):
-	def __init__(self, number):
-		super().__init__(number, 10)
-		self.operator = "×"
+    def __init__(self, number):
+        super().__init__(number, 10)
+        self.operator = "×"
 
-	def getAnswer(self):
-		return self.a * self.b
-
-
+    def getAnswer(self):
+        return self.a * self.b
